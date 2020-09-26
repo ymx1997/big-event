@@ -35,7 +35,6 @@ html,body {
 
 #goto-register , #goto-login {
     float: right;
-    margin-top: 20px;
 }
 
 .layui-form-item {
