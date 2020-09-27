@@ -48,10 +48,23 @@ $('#login form').on('submit', function (e) {
             layer.msg(res.message);
             if (res.status === 0) {
                 // 把token添加到本地存储
-                localStorage.setItem('token',res.token)
+                localStorage.setItem('token', res.token)
                 // 跳转到index.html页面
                 location.href = 'https://www.baidu.com';
             }
         }
     })
+})
+
+
+// 自定义验证规则
+let form = layui.form;
+form.verify({
+    length: [/^\S{6,12}$/, '密码长度为6~12位，不能有空格哟！'],
+    same: function (val) {
+        var pwd = $('.pwd').val();
+        if(pwd !== val) {
+            return '两次输入的密码不一致哟！'
+        }
+    }
 })
