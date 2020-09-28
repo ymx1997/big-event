@@ -50,7 +50,7 @@ $('#login form').on('submit', function (e) {
                 // 把token添加到本地存储
                 localStorage.setItem('token', res.token)
                 // 跳转到index.html页面
-                location.href = 'https://www.baidu.com';
+                location.href = 'index.html';
             }
         }
     })
