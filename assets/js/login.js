@@ -17,7 +17,7 @@ $('#register form').on('submit', function (e) {
     // 发送ajax请求
     $.ajax({
         type: 'POST',
-        url: 'http://ajax.frontend.itheima.net/api/reguser',
+        url: '/api/reguser',
         data: data,
         success: function (res) {
             // 无论成功与否，都给出提示
@@ -42,15 +42,15 @@ $('#login form').on('submit', function (e) {
     // 发送ajax请求
     $.ajax({
         type: 'POST',
-        url: 'http://ajax.frontend.itheima.net/api/login',
-        data: data,
+        url: '/api/login',
+        data: $(this).serialize(),
         success: function (res) {
             layer.msg(res.message);
             if (res.status === 0) {
                 // 把token添加到本地存储
                 localStorage.setItem('token', res.token)
                 // 跳转到index.html页面
-                location.href = 'index.html';
+                location.href = '/index.html';
             }
         }
     })
