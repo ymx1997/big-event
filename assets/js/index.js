@@ -5,7 +5,6 @@ function renderUser() {
         success: function (res) {
             // console.log(res);
             if (res.status === 0) {
-                layer.msg(res.message)
                 // 渲染用户的用户名(优先使用nickname，没有nickname，使用username)
                 let name = res.data.nickname || res.data.username;
                 $('.username').text(name);
