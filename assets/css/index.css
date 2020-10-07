@@ -37,3 +37,9 @@ div.userinfo {
 .userinfo img, .userinfo .avatar {
     display: none;
 }
+
+/* 底部文字样式 */
+.layui-footer {
+    text-align: center;
+    font-size: 14px;
+}
