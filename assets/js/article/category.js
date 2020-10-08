@@ -41,36 +41,36 @@ $('body').on('click', 'button:contains("删除")', function () {
 
 // 添加类别功能
 // 使用contains方法 绑定事件
+var addIndex;
 $('button:contains("添加")').click(function () {
     // 使用layer.open弹层
-    var addIndex = layer.open({
+    addIndex = layer.open({
         type: 1,
         title: '添加类别',
         content: $('#tpl-add').html(),
         area: ['500px', '250px']
     });
-    // 利用事件委托给表单注册submit事件
-    $('body').on('submit', '.add-form', function (e) {
-        e.preventDefault();
-        // 使用serialize获取form表单name值
-        let data = $(this).serialize();
-        // 发送Ajax请求
-        $.ajax({
-            type: 'POST',
-            url: '/my/article/addcates',
-            data: data,
-            success: function (res) {
-                layer.msg(res.message)
-                if (res.status === 0) {
-                    render();
-                    // 关闭弹层
-                    layer.close(addIndex);
-                }
+})
+// 利用事件委托给表单注册submit事件
+$('body').on('submit', '.add-form', function (e) {
+    e.preventDefault();
+    // 使用serialize获取form表单name值
+    let data = $(this).serialize();
+    // 发送Ajax请求
+    $.ajax({
+        type: 'POST',
+        url: '/my/article/addcates',
+        data: data,
+        success: function (res) {
+            layer.msg(res.message)
+            if (res.status === 0) {
+                render();
+                // 关闭弹层
+                layer.close(addIndex);
             }
-        })
+        }
     })
 })
-
 
 // 编辑类别功能
 $('body').on('click', 'button:contains("编辑")', function () {

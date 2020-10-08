@@ -77,13 +77,13 @@
         <tr>
             <td>{{val.title}}</td>
             <td>{{val.cate_name}}</td>
-            <td>{{val.pub_date}}</td>
+            <td>{{val.pub_date|dateFormat}}</td>
             <td>{{val.state}}</td>
             <th>
                 <!-- 编辑按钮 -->
                 <a href="" class="layui-btn layui-btn-xs">编辑</a>
                 <!-- 删除按钮 -->
-                <button data-id="{{val.Id}}" type="button" class="layui-btn-xs layui-btn-danger">删除</button>
+                <button data-id="{{val.Id}}" type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
             </th>
         </tr>
     {{/each}}
