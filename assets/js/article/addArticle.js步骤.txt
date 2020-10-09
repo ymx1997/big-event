@@ -1,0 +1,28 @@
+-------------------完成添加功能-----------------------
+利用事件委托机制，给form表单绑定提交事件
+阻止默认行为
+收集表单数据 FormData格式
+替换FormData对象里面的一项
+fd.set('content', tinyMCE.activeEditor.getContent())
+剪裁图片
+let canvas = theImg.cropper('getCroppedCanvas',{
+    width: 400,
+    height: 200
+});
+把图片转成 blob 形式
+canvas.toBlob(function(blob){
+  // 形参blob就是转换后的结果
+  // 把文件追加到fd中
+  fd.append('cover_img', blob)
+  // 遍历fd对象，检查fd对象中是否包括了接口要求的5个参数
+  fd.forEach((value, key) => {
+  console.log(key,value)
+})
+
+// ajax提交给接口，完成添加
+  注意：提交formdata数据，必须加下面两个选项
+  processData: false,
+  contentType: false,
+  无论成功与否，给出提示
+  添加后，跳转到文章列表页面
+})

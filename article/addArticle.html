@@ -14,7 +14,7 @@
     <div class="layui-card">
         <div class="layui-card-header">发布文章</div>
         <div class="layui-card-body">
-            <form class="layui-form" action="" id="add-form">
+            <form class="layui-form" action="" id="addAtricle">
                 <div class="layui-form-item">
                     <label class="layui-form-label">文章标题</label>
                     <div class="layui-input-block">
@@ -25,47 +25,51 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">文章类别</label>
                     <div class="layui-input-block">
-                        <select name="category" lay-verify="">
+                        <select name="cate_id" lay-verify="required">
 
                         </select>
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item layui-form-text">
                     <!-- 左侧的label -->
                     <label class="layui-form-label">文章内容</label>
                     <!-- 为富文本编辑器外部的容器设置高度 -->
                     <div class="layui-input-block" style="height: 400px;">
                         <!-- 重要：将来这个 textarea 会被初始化为富文本编辑器 -->
-                        <textarea name="content"></textarea>
+                        <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <!-- 左侧的 label -->
+                    <label class="layui-form-label">文章封面</label>
+                    <!-- 选择封面区域 -->
+                    <div class="layui-input-block cover-box">
+                        <!-- 左侧裁剪区域 -->
+                        <div class="cover-left">
+                            <img id="image" src="/assets/images/sample2.jpg" alt="" name="cover_img"/>
+                        </div>
+                        <!-- 右侧预览区域和选择封面区域 -->
+                        <div class="cover-right">
+                            <!-- 预览的区域 -->
+                            <div class="img-preview"></div>
+                            <!-- 选择封面按钮 -->
+                            <input type="file" style="display: none;" id="file">
+                            <button type="button" class="layui-btn layui-btn-danger">选择封面</button>
+                        </div>
+                    </div>
+                    <!-- 底部单选框区域 -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">文章状态</label>
+                        <div class="layui-input-block">
+                          <input type="radio" name="state" value="发布" title="发布">
+                          <input type="radio" name="state" value="草稿" title="草稿" checked>
+                        </div>
+                        <div class="layui-input-block">
+                            <button lay-submit lay-filter="formDemo" class="layui-btn">确认提交</button>
+                        </div>
+                      </div>
+                </div>
             </form>
-        </div>
-        <div class="layui-form-item">
-            <!-- 左侧的 label -->
-            <label class="layui-form-label">文章封面</label>
-            <!-- 选择封面区域 -->
-            <div class="layui-input-block cover-box">
-                <!-- 左侧裁剪区域 -->
-                <div class="cover-left">
-                    <img id="image" src="/assets/images/sample2.jpg" alt="" />
-                </div>
-                <!-- 右侧预览区域和选择封面区域 -->
-                <div class="cover-right">
-                    <!-- 预览的区域 -->
-                    <div class="img-preview"></div>
-                    <!-- 选择封面按钮 -->
-                    <input type="file" style="display: none;" id="file">
-                    <button type="button" class="layui-btn layui-btn-danger">选择封面</button>
-                </div>
-            </div>
-            <!-- 底部按钮区域 -->
-            <div class="layui-form-item" style="margin-top: 20px;">
-                <div class="layui-input-block">
-                    <button type="button" class="layui-btn">发布</button>
-                    <button type="button" class="layui-btn layui-btn-primary">存为草稿</button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -79,13 +83,16 @@
     </script>
     <!-- 下拉框的分类模板 end -->
 
-    <script src="/assets/lib/jquery.js"></script>
-    <script src="/assets/lib/layui/layui.all.js"></script>
-    <script src="/assets/lib/cropper/Cropper.js"></script>
-    <script src="/assets/lib/cropper/jquery-cropper.js"></script>
     <script src="/assets/lib/template-web.js"></script>
+    <script src="/assets/lib/layui/layui.all.js"></script>
+    <script src="/assets/lib/jquery.js"></script>
+
     <script src="/assets/lib/tinymce/tinymce.min.js"></script>
     <script src="/assets/lib/tinymce/tinymce_setup.js"></script>
+    
+    <script src="/assets/lib/cropper/Cropper.js"></script>
+    <script src="/assets/lib/cropper/jquery-cropper.js"></script>
+
     <script src="/assets/js/common.js"></script>
     <script src="/assets/js/article/addArticle.js"></script>
 </body>
