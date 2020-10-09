@@ -1,0 +1,73 @@
+在最前面加载 所需的layui 模块
+laypage / form
+
+
+--------------获取文章列表并渲染-----------------
+使用全局变量设置请求参数 - - 必选的参数 pagenum (获取第？页数据)和 pagesize（每页显示？条数据） 一定写
+封装一个渲染页面的函数 renderArticleList
+发送ajax请求
+模板引擎渲染
+调用showpage 展示分页页码
+调用一次 renderArticleList
+
+
+---------------分页--------------
+封装一个展示页码的函数
+执行laypage实例
+laypage.render({
+elem -> 存放分页的容器  id值  注意不能加"#"
+count -> 数据总数，一般从服务端获得
+limit -> 每页显示的条数
+limits -> 每页条数的选择项
+curr -> 起始页 一般用于刷新类型的跳页以及HASH跳页
+layout -> 自定义排版 需求(prev,page,next,count,limit,skip)
+jump -> 切换分页的回调  当分页被切换时触发，函数返回两个参数：obj（当前分页的所有选项值）、first（是否首次，一般用于初始加载的判断）
+刷新页面或页码切换时，会执行jump函数
+jump 函数里 如果first === undefined data.pagenum = obj.curr;  data.pagesize = obj.limit;
+调用一次renderArticleList函数
+})
+
+
+----------------发送ajax请求，获取所有分类---------------
+记得模板引擎渲染
+获取name值为category的select 
+下拉框重新渲染，故要调用layui的更新渲染方法
+form.render('select')
+
+
+-----------------筛选功能----------------------
+给form表单 (类名为search)绑定提交事件
+阻止默认行为
+获取下拉框的值 (serializeArray方法)
+修改请求参数，发送ajax
+重置pagenum （筛选过后，应先看到第1页数据）
+调用一次renderArticleList函数
+
+
+-----------------注册模板过滤器---------------
+template.defaults.imports.dateFormat = function(str) {
+   let date = new Date(str);
+   // 获取年月日时分秒
+  let y = date.getFullYear();
+  let m = addZero(date.getMonth() + 1)
+  let d = addZero(date.getDate());
+    let h = addZero(date.getHours());
+    let i = addZero(date.getMinutes());
+    let s = addZero(date.getSeconds());
+    return y + '-' + m + '-' + d + ' ' + h + ':' + i + ':' + s;
+}
+
+function addZero (n) {
+    return n < 10 ? '0' + n : n ;
+}
+
+
+------------------------删除文章------------------
+利用事件委托机制，给删除按钮绑定点击事件
+获取id 打印
+使用layui的 confirm弹层询问框
+发送ajax请求
+无论成功与否给出提示
+调用一次renderArticleList函数
+
+最后记得关闭弹层
